@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# expected use:
-# ./comparetexts.sh result.txt resultTest.txt
+# expected uses:
+# ./comparetexts.sh result.txt resultCorrect.txt
+# ./comparetexts.sh assignementResult.txt assignementResultCorrect.txt
 
 # Check if two arguments (files) are passed
 if [ "$#" -ne 2 ]; then

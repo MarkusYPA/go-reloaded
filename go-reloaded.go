@@ -127,9 +127,17 @@ func fixAsToAns(in string) string {
 func fixSingleQuotes(in string) string {
 	output := ""
 	singlesCount := 0
+	skip := false
 	for i, r := range in {
 		output += string(r)
 		if r == '\'' {
+			if i > 3 && in[i-3:i] == "don" && in[i+1] == 't' { // exception for "don't"
+				skip = true
+				continue
+			}
+
+			fmt.Println("This is i:", i)
+
 			if singlesCount%2 == 0 { // left single quotes
 				if i > 0 && !unicode.IsSpace(rune(in[i-1])) { // no space before left '
 					output = output[:len(output)-2] + " " + string(r) // add the missing space
@@ -147,9 +155,10 @@ func fixSingleQuotes(in string) string {
 		if singlesCount%2 == 1 && unicode.IsSpace(r) && i > 0 && in[i-1] == '\'' { // space after left '
 			output = output[:len(output)-1] // remove the space
 		}
-		if singlesCount%2 == 0 && !unicode.IsSpace(r) && i > 0 && in[i-1] == '\'' { // no space after right '
+		if singlesCount%2 == 0 && !unicode.IsSpace(r) && i > 0 && in[i-1] == '\'' && !skip { // no space after right '
 			output = output[:len(output)-1] + " " + string(r) // add the space
 		}
+		skip = false
 	}
 	return output
 }
