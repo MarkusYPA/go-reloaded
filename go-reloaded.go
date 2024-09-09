@@ -136,8 +136,6 @@ func fixSingleQuotes(in string) string {
 				continue
 			}
 
-			fmt.Println("This is i:", i)
-
 			if singlesCount%2 == 0 { // left single quotes
 				if i > 0 && !unicode.IsSpace(rune(in[i-1])) { // no space before left '
 					output = output[:len(output)-2] + " " + string(r) // add the missing space
