@@ -81,7 +81,7 @@ func TestCreateOutput2(t *testing.T) {
 		os.Exit(1)
 	}
 
-	fileWant, err := os.Open("resultTest.txt")
+	fileWant, err := os.Open("resultCorrect.txt")
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
