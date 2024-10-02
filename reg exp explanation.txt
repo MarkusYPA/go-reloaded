@@ -1,0 +1,14 @@
+To match the strings "(low)" and "(low, <number>)" in Go, where <number> can be any integer, you can use the following regular expression:
+
+\((low)(,\s*-?\d+)?\)
+
+Here is the breakdown of the regular expression:
+
+\( and \) match the literal parentheses.
+(low) matches the exact string "low".
+(,\s*-?\d+)? matches an optional part that includes:
+	, matches the comma.
+	\s* matches any whitespace characters (spaces, tabs, etc.) that might occur after the comma (optional).
+	-? matches an optional minus sign for negative numbers.
+	\d+ matches one or more digits.
+? makes the entire ,\s*-?\d+ part optional, allowing for the match of just (low).
